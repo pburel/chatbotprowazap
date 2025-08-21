@@ -35,7 +35,7 @@ export const messages = pgTable("messages", {
   metadata: jsonb("metadata"), // for storing additional message data
 });
 
-export const botConfig = pgTable("bot_config", {
+export const botConfigs = pgTable("bot_config", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull().default("Customer Support Bot"),
   welcomeMessage: text("welcome_message").notNull(),
@@ -93,7 +93,7 @@ export const insertMessageSchema = createInsertSchema(messages).pick({
   metadata: true,
 });
 
-export const insertBotConfigSchema = createInsertSchema(botConfig).pick({
+export const insertBotConfigSchema = createInsertSchema(botConfigs).pick({
   name: true,
   welcomeMessage: true,
   isActive: true,
@@ -130,7 +130,7 @@ export type InsertMessage = z.infer<typeof insertMessageSchema>;
 export type Message = typeof messages.$inferSelect;
 
 export type InsertBotConfig = z.infer<typeof insertBotConfigSchema>;
-export type BotConfig = typeof botConfig.$inferSelect;
+export type BotConfig = typeof botConfigs.$inferSelect;
 
 export type InsertMessageTemplate = z.infer<typeof insertMessageTemplateSchema>;
 export type MessageTemplate = typeof messageTemplates.$inferSelect;
