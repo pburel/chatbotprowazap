@@ -119,7 +119,7 @@ export default function TemplateEditor() {
   const onSubmit = (data: InsertMessageTemplate) => {
     // Parse keywords from comma-separated string
     const keywordsArray = typeof data.keywords === 'string' 
-      ? data.keywords.split(',').map(k => k.trim()).filter(k => k.length > 0)
+      ? (data.keywords as string).split(',').map((k: string) => k.trim()).filter((k: string) => k.length > 0)
       : data.keywords || [];
 
     const templateData = { ...data, keywords: keywordsArray };
@@ -138,7 +138,7 @@ export default function TemplateEditor() {
       content: template.content,
       keywords: template.keywords || [],
       category: template.category || "general",
-      isActive: template.isActive,
+      isActive: template.isActive ?? true,
     });
     setIsDialogOpen(true);
   };
@@ -203,7 +203,7 @@ export default function TemplateEditor() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Category</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select onValueChange={field.onChange} defaultValue={field.value || "general"}>
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select a category" />
@@ -249,7 +249,7 @@ export default function TemplateEditor() {
                       <FormControl>
                         <Input 
                           {...field}
-                          value={Array.isArray(field.value) ? field.value.join(', ') : field.value}
+                          value={Array.isArray(field.value) ? field.value.join(', ') : (field.value || '')}
                           onChange={(e) => field.onChange(e.target.value)}
                           placeholder="order, status, track (comma separated)"
                         />

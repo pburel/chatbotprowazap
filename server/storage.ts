@@ -196,6 +196,8 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id,
+      role: insertUser.role || "admin",
+      avatar: insertUser.avatar ?? null,
       createdAt: new Date(),
     };
     this.users.set(id, user);
@@ -218,6 +220,9 @@ export class MemStorage implements IStorage {
     const conversation: Conversation = {
       ...insertConversation,
       id,
+      status: insertConversation.status || "active",
+      customerAvatar: insertConversation.customerAvatar ?? null,
+      lastMessage: insertConversation.lastMessage ?? null,
       lastMessageTime: new Date(),
       isActive: true,
     };
@@ -244,7 +249,12 @@ export class MemStorage implements IStorage {
     const message: Message = {
       ...insertMessage,
       id,
+      conversationId: insertMessage.conversationId ?? null,
+      isBot: insertMessage.isBot ?? false,
+      isUser: insertMessage.isUser ?? true,
+      messageType: insertMessage.messageType ?? "text",
       timestamp: new Date(),
+      metadata: insertMessage.metadata ?? null,
     };
 
     const messages = this.messages.get(insertMessage.conversationId!) || [];
@@ -263,6 +273,10 @@ export class MemStorage implements IStorage {
     const updated: BotConfig = {
       id: this.botConfig?.id || randomUUID(),
       ...config,
+      name: config.name || "Customer Support Bot",
+      isActive: config.isActive ?? true,
+      autoRespond: config.autoRespond ?? true,
+      responseDelay: config.responseDelay ?? 1000,
       updatedAt: new Date(),
     };
     this.botConfig = updated;
@@ -285,6 +299,9 @@ export class MemStorage implements IStorage {
     const template: MessageTemplate = {
       ...insertTemplate,
       id,
+      keywords: insertTemplate.keywords ?? null,
+      category: insertTemplate.category ?? null,
+      isActive: insertTemplate.isActive ?? true,
       usageCount: 0,
       createdAt: new Date(),
     };
@@ -318,6 +335,12 @@ export class MemStorage implements IStorage {
       ...insertAnalytics,
       id,
       date: insertAnalytics.date || new Date(),
+      totalMessages: insertAnalytics.totalMessages ?? 0,
+      activeUsers: insertAnalytics.activeUsers ?? 0,
+      botResponses: insertAnalytics.botResponses ?? 0,
+      responseRate: insertAnalytics.responseRate ?? 0,
+      avgResponseTime: insertAnalytics.avgResponseTime ?? 0,
+      userSatisfaction: insertAnalytics.userSatisfaction ?? 0,
     };
     this.analytics.set(id, analytics);
     return analytics;

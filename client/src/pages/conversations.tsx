@@ -74,10 +74,13 @@ export default function Conversations() {
                       {conversation.customerName}
                     </h3>
                     <span className="text-xs text-muted-foreground">
-                      {conversation.lastMessageTime?.toLocaleTimeString([], { 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                      })}
+                      {conversation.lastMessageTime 
+                        ? new Date(conversation.lastMessageTime).toLocaleTimeString([], { 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
+                          })
+                        : ''
+                      }
                     </span>
                   </div>
                   

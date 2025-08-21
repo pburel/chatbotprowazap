@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -58,15 +59,17 @@ export default function ConfigForm() {
   });
 
   // Update form values when data loads
-  if (botConfig && !form.formState.isDirty) {
-    form.reset({
-      name: botConfig.name,
-      welcomeMessage: botConfig.welcomeMessage,
-      isActive: botConfig.isActive,
-      autoRespond: botConfig.autoRespond,
-      responseDelay: botConfig.responseDelay,
-    });
-  }
+  React.useEffect(() => {
+    if (botConfig && !form.formState.isDirty) {
+      form.reset({
+        name: botConfig.name,
+        welcomeMessage: botConfig.welcomeMessage,
+        isActive: botConfig.isActive ?? true,
+        autoRespond: botConfig.autoRespond ?? true,
+        responseDelay: botConfig.responseDelay ?? 1000,
+      });
+    }
+  }, [botConfig, form]);
 
   const onSubmit = (data: InsertBotConfig) => {
     updateConfigMutation.mutate(data);
@@ -139,7 +142,7 @@ export default function ConfigForm() {
                 </div>
                 <FormControl>
                   <Switch
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
@@ -160,7 +163,7 @@ export default function ConfigForm() {
                 </div>
                 <FormControl>
                   <Switch
-                    checked={field.value}
+                    checked={field.value ?? false}
                     onCheckedChange={field.onChange}
                   />
                 </FormControl>
@@ -181,7 +184,8 @@ export default function ConfigForm() {
                     max={10000}
                     step={100}
                     {...field}
-                    onChange={(e) => field.onChange(parseInt(e.target.value))}
+                    value={field.value ?? 1000}
+                    onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                   />
                 </FormControl>
                 <FormDescription>

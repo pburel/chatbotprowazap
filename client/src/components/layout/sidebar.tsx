@@ -45,9 +45,9 @@ export default function Sidebar() {
             const isActive = location === item.href || (location === "/" && item.href === "/dashboard");
             return (
               <Link key={item.name} href={item.href}>
-                <a
+                <div
                   className={cn(
-                    "flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors",
+                    "flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors cursor-pointer",
                     isActive
                       ? "bg-whatsapp-primary/10 text-whatsapp-primary"
                       : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
@@ -55,7 +55,7 @@ export default function Sidebar() {
                 >
                   <item.icon className="h-5 w-5" />
                   <span className="font-medium">{item.name}</span>
-                </a>
+                </div>
               </Link>
             );
           })}

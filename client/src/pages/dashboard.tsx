@@ -36,12 +36,12 @@ export default function Dashboard() {
         </div>
 
         {/* Stats Cards */}
-        <StatsCards analytics={analytics} />
+        <StatsCards analytics={analytics as any} />
 
         {/* Charts and Analytics */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <MessageChart />
-          <PerformanceMetrics analytics={analytics} />
+          <PerformanceMetrics analytics={analytics as any} />
         </div>
 
         {/* Recent Activity */}
