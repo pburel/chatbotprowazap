@@ -7,8 +7,12 @@ import {
   insertBotConfigSchema,
   insertMessageTemplateSchema 
 } from "@shared/schema";
+import { getHealth } from "./routes/health";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Health check route
+  app.get("/api/health", getHealth);
   
   // Analytics routes
   app.get("/api/analytics", async (req, res) => {

@@ -10,6 +10,7 @@ import BotConfig from "@/pages/bot-config";
 import Templates from "@/pages/templates";
 import Automation from "@/pages/automation";
 import Analytics from "@/pages/analytics";
+import Settings from "@/pages/settings";
 import Sidebar from "@/components/layout/sidebar";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
           <Route path="/templates" component={Templates} />
           <Route path="/automation" component={Automation} />
           <Route path="/analytics" component={Analytics} />
+          <Route path="/settings" component={Settings} />
           <Route component={NotFound} />
         </Switch>
       </div>

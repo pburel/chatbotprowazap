@@ -6,7 +6,8 @@ import {
   FileText, 
   Settings, 
   TrendingUp,
-  MessageCircle
+  MessageCircle,
+  Cog
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -18,6 +19,7 @@ const navigation = [
   { name: "Message Templates", href: "/templates", icon: FileText },
   { name: "Automation", href: "/automation", icon: Settings },
   { name: "Analytics", href: "/analytics", icon: TrendingUp },
+  { name: "Settings", href: "/settings", icon: Cog },
 ];
 
 export default function Sidebar() {

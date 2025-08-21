@@ -349,4 +349,19 @@ export class MemStorage implements IStorage {
 
 import { PostgresStorage } from "./storage/postgres";
 
-export const storage = process.env.DATABASE_URL ? new PostgresStorage() : new MemStorage();
+// Initialize storage with error handling
+let storageInstance: IStorage;
+try {
+  if (process.env.DATABASE_URL) {
+    storageInstance = new PostgresStorage();
+    console.log("Using PostgreSQL storage (Supabase)");
+  } else {
+    storageInstance = new MemStorage();
+    console.log("Using in-memory storage");
+  }
+} catch (error) {
+  console.warn("Failed to initialize PostgreSQL storage, falling back to in-memory:", error);
+  storageInstance = new MemStorage();
+}
+
+export const storage = storageInstance;
