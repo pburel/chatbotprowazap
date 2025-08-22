@@ -44,26 +44,26 @@ export default function StatsCards({ analytics }: StatsCardsProps) {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
       {stats.map((stat) => (
-        <Card key={stat.title} className="border-border">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
-                <stat.icon className={`h-6 w-6 ${stat.color}`} />
+        <Card key={stat.title} className="border-border hover:shadow-md transition-shadow">
+          <CardContent className="p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <div className={`w-10 h-10 sm:w-12 sm:h-12 ${stat.bgColor} rounded-lg flex items-center justify-center`}>
+                <stat.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${stat.color}`} />
               </div>
               <span
                 className={`text-xs font-medium px-2 py-1 rounded-full ${
                   stat.negative
-                    ? "text-red-600 bg-red-100"
-                    : "text-green-600 bg-green-100"
+                    ? "text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-900/20"
+                    : "text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/20"
                 }`}
               >
                 {stat.change}
               </span>
             </div>
-            <h3 className="text-2xl font-bold text-foreground mb-1">{stat.value}</h3>
-            <p className="text-sm text-muted-foreground">{stat.title}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1">{stat.value}</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground">{stat.title}</p>
           </CardContent>
         </Card>
       ))}

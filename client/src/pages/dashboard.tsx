@@ -26,20 +26,20 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex-1 flex flex-col lg:flex-row">
+    <div className="flex-1 flex flex-col xl:flex-row">
       {/* Left Content Area */}
-      <div className="flex-1 p-6 overflow-y-auto">
+      <div className="flex-1 p-4 sm:p-6 overflow-y-auto">
         {/* Header */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-2">Dashboard Overview</h2>
-          <p className="text-muted-foreground">Monitor your WhatsApp chatbot performance and manage conversations</p>
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Dashboard Overview</h2>
+          <p className="text-sm sm:text-base text-muted-foreground">Monitor your WhatsApp chatbot performance and manage conversations</p>
         </div>
 
         {/* Stats Cards */}
         <StatsCards analytics={analytics as any} />
 
         {/* Charts and Analytics */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <MessageChart />
           <PerformanceMetrics analytics={analytics as any} />
         </div>
@@ -49,7 +49,7 @@ export default function Dashboard() {
       </div>
 
       {/* Right Sidebar - Chat Simulator */}
-      <div className="w-full lg:w-96">
+      <div className="w-full xl:w-96 border-t xl:border-t-0 xl:border-l border-border">
         <ChatSimulator />
       </div>
     </div>

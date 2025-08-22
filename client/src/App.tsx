@@ -15,20 +15,22 @@ import Sidebar from "@/components/layout/sidebar";
 
 function Router() {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <div className="flex-1">
-        <Switch>
-          <Route path="/" component={Dashboard} />
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/conversations" component={Conversations} />
-          <Route path="/bot-config" component={BotConfig} />
-          <Route path="/templates" component={Templates} />
-          <Route path="/automation" component={Automation} />
-          <Route path="/analytics" component={Analytics} />
-          <Route path="/settings" component={Settings} />
-          <Route component={NotFound} />
-        </Switch>
+    <div className="min-h-screen bg-background">
+      <div className="flex min-h-screen">
+        <Sidebar />
+        <div className="flex-1 flex flex-col lg:ml-0">
+          <Switch>
+            <Route path="/" component={Dashboard} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/conversations" component={Conversations} />
+            <Route path="/bot-config" component={BotConfig} />
+            <Route path="/templates" component={Templates} />
+            <Route path="/automation" component={Automation} />
+            <Route path="/analytics" component={Analytics} />
+            <Route path="/settings" component={Settings} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
       </div>
     </div>
   );
